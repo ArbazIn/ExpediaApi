@@ -1,10 +1,11 @@
 package com.example.arbaz.expediaexmple.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class NightlyRatesPerRoom{
-	private String size;
-	private List<NightlyRateItem> nightlyRate;
+public class NightlyRatesPerRoom implements Serializable{
+	public String size;
+	public List<NightlyRateItem> nightlyRate;
 
 	public void setSize(String size){
 		this.size = size;

@@ -24,12 +24,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by arbaz on 7/11/16.
  */
-public class HotelDetailACtivity extends AppCompatActivity implements OnApiCallListener {
+public class HotelDetailACtivity extends AppCompatActivity implements OnApiCallListener,Serializable {
     Bundle bRoom;
     HotelSummaryItem hotelSummaryItem;
     TextView tv_b_hotel_name, tv_b_hotel_rate, tv_b_hotel_hp, tv_b_hotel_lp;

@@ -3,13 +3,13 @@ package com.example.arbaz.expediaexmple.model;
 import java.io.Serializable;
 
 public class RoomGroup implements Serializable{
-	public Room room;
+	public Room Room;
 
-	public void setRoom(Room room){
-		this.room = room;
+	public com.example.arbaz.expediaexmple.model.Room getRoom() {
+		return Room;
 	}
 
-	public Room getRoom(){
-		return room;
+	public void setRoom(com.example.arbaz.expediaexmple.model.Room room) {
+		Room = room;
 	}
 }

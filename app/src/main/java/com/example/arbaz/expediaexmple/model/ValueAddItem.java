@@ -1,8 +1,10 @@
 package com.example.arbaz.expediaexmple.model;
 
-public class ValueAddItem{
-	private String description;
-	private String id;
+import java.io.Serializable;
+
+public class ValueAddItem implements Serializable{
+	public String description;
+	public String id;
 
 	public void setDescription(String description){
 		this.description = description;

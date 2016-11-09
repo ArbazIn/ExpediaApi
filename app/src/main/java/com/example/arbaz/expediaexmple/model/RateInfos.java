@@ -4,21 +4,21 @@ import java.io.Serializable;
 
 public class RateInfos implements Serializable{
 	public String size;
-	public RateInfo rateInfo;
+	public RateInfo RateInfo;
 
-	public void setSize(String size){
-		this.size = size;
-	}
-
-	public String getSize(){
+	public String getSize() {
 		return size;
 	}
 
-	public void setRateInfo(RateInfo rateInfo){
-		this.rateInfo = rateInfo;
+	public void setSize(String size) {
+		this.size = size;
 	}
 
-	public RateInfo getRateInfo(){
-		return rateInfo;
+	public com.example.arbaz.expediaexmple.model.RateInfo getRateInfo() {
+		return RateInfo;
+	}
+
+	public void setRateInfo(com.example.arbaz.expediaexmple.model.RateInfo rateInfo) {
+		RateInfo = rateInfo;
 	}
 }

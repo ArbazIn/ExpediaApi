@@ -24,7 +24,7 @@
             android:name=".screens.HotelDetailACtivity"
             android:label="Book Hotel"
             android:screenOrientation="portrait" />
-        <activity android:name=".screens.HotelBookActivity"></activity>
+        <activity android:name=".screens.RoomlBookActivity"></activity>
     </application>
 
 </manifest>

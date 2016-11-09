@@ -3,6 +3,9 @@ package com.example.arbaz.expediaexmple.api;
 import android.content.Context;
 
 import com.example.arbaz.expediaexmple.Listner.OnApiCallListener;
+import com.example.arbaz.expediaexmple.model.FinalAddressInfo;
+import com.example.arbaz.expediaexmple.model.FinalReservationInfo;
+import com.example.arbaz.expediaexmple.model.FinalRoomGroup;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.Callback;
@@ -81,14 +84,18 @@ public class ApiFunctions {
     }
 
     /*Api Function For  Hotel Available*/
-    public void hotelAvailable(String url, String cid, String minorRev, String apiKey, String locale, String currencyCode, String sig, long hotelId, String arrivalDate, String departureDate, boolean includeDetails, int numberOfAdults) {
+    public void hotelAvailable(
+            String url, String cid, String minorRev, String apiKey, String locale, String currencyCode, String sig,
+            long hotelId, String arrivalDate, String departureDate, boolean includeDetails, int numberOfAdults)
+
+    {
 
         try {
             String getUrl = url + "&cid=" + cid + "&minorRev=" + minorRev + "&apikey=" + apiKey + "&locale=" + locale + "&currencyCode=" + currencyCode + "&sig=" + sig + "&hotelId=" + hotelId + "&arrivalDate=" + arrivalDate + "&departureDate=" + departureDate + "&includeDetails=" + includeDetails + "&numberOfAdults=" + numberOfAdults;
             Request request = new Request.Builder().url(getUrl).get().build();
             executeRequest(url, request);
         } catch (Exception e) {
-            e   .printStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -103,11 +110,21 @@ public class ApiFunctions {
             e.printStackTrace();
         }
     }
+
     /*Api Function For  Hotel Room Reservation*/
-    public void hotelRoomReservation(String url, String cid, String minorRev, String apiKey, String locale, String currencyCode, String sig, long hotelId, String supplierType, String rateType) {
+    public void hotelRoomReservation(String url, String cid, String minorRev, String apiKey, String locale,
+                                     String currencyCode, String sig, long hotelId, String arrivalDate, String departureDate,
+                                     String supplierType, String rateKey, int roomTypeCode, int rateCode, String chargeableRate,
+                                     FinalRoomGroup finalRoomGroup, FinalReservationInfo finalReservationInfo, FinalAddressInfo finalAddressInfo) {
+
 
         try {
-            String getUrl = url + "&cid=" + cid + "&minorRev=" + minorRev + "&apikey=" + apiKey + "&locale=" + locale + "&currencyCode=" + currencyCode + "&sig=" + sig + "&hotelId=" + hotelId + "&supplierType=" + supplierType + "&rateType=" + rateType;
+            String getUrl = url + "&cid=" + cid + "&minorRev=" + minorRev + "&apikey=" + apiKey + "&locale=" + locale
+                    + "&currencyCode=" + currencyCode + "&sig=" + sig + "" +
+                    "&hotelId=" + hotelId + "&arrivalDate=" + arrivalDate + "&departureDate=" + departureDate + "&supplierType=" + supplierType +"&rateKey="+rateKey+"&roomTypeCode="+roomTypeCode+
+                    "&rateCode="+rateCode+"&chargeableRate="+chargeableRate+"&RoomGroup="+finalRoomGroup+"&ReservationInfo="+finalReservationInfo+
+                    "&AddressInfo="+finalAddressInfo;
+                    ;
             Request request = new Request.Builder().url(getUrl).get().build();
             executeRequest(url, request);
         } catch (Exception e) {

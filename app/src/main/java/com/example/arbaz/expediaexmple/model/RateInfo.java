@@ -7,117 +7,117 @@ public class RateInfo implements Serializable{
 	public int currentAllotment;
 	public boolean depositRequired;
 	public boolean nonRefundable;
-	public ChargeableRateInfo chargeableRateInfo;
+	public ChargeableRateInfo ChargeableRateInfo;
 	public boolean guaranteeRequired;
-	public CancelPolicyInfoList cancelPolicyInfoList;
+	public CancelPolicyInfoList CancelPolicyInfoList;
 	public String rateType;
 	public double taxRate;
 	public String rateChange;
 	public String promo;
-	public RoomGroup roomGroup;
+	public RoomGroup RoomGroup;
 	public String cancellationPolicy;
 
-	public void setPriceBreakdown(String priceBreakdown){
-		this.priceBreakdown = priceBreakdown;
-	}
-
-	public String getPriceBreakdown(){
+	public String getPriceBreakdown() {
 		return priceBreakdown;
 	}
 
-	public void setCurrentAllotment(int currentAllotment){
-		this.currentAllotment = currentAllotment;
+	public void setPriceBreakdown(String priceBreakdown) {
+		this.priceBreakdown = priceBreakdown;
 	}
 
-	public int getCurrentAllotment(){
+	public int getCurrentAllotment() {
 		return currentAllotment;
 	}
 
-	public void setDepositRequired(boolean depositRequired){
-		this.depositRequired = depositRequired;
+	public void setCurrentAllotment(int currentAllotment) {
+		this.currentAllotment = currentAllotment;
 	}
 
-	public boolean isDepositRequired(){
+	public boolean isDepositRequired() {
 		return depositRequired;
 	}
 
-	public void setNonRefundable(boolean nonRefundable){
-		this.nonRefundable = nonRefundable;
+	public void setDepositRequired(boolean depositRequired) {
+		this.depositRequired = depositRequired;
 	}
 
-	public boolean isNonRefundable(){
+	public boolean isNonRefundable() {
 		return nonRefundable;
 	}
 
-	public void setChargeableRateInfo(ChargeableRateInfo chargeableRateInfo){
-		this.chargeableRateInfo = chargeableRateInfo;
+	public void setNonRefundable(boolean nonRefundable) {
+		this.nonRefundable = nonRefundable;
 	}
 
-	public ChargeableRateInfo getChargeableRateInfo(){
-		return chargeableRateInfo;
+	public com.example.arbaz.expediaexmple.model.ChargeableRateInfo getChargeableRateInfo() {
+		return ChargeableRateInfo;
 	}
 
-	public void setGuaranteeRequired(boolean guaranteeRequired){
-		this.guaranteeRequired = guaranteeRequired;
+	public void setChargeableRateInfo(com.example.arbaz.expediaexmple.model.ChargeableRateInfo chargeableRateInfo) {
+		ChargeableRateInfo = chargeableRateInfo;
 	}
 
-	public boolean isGuaranteeRequired(){
+	public boolean isGuaranteeRequired() {
 		return guaranteeRequired;
 	}
 
-	public void setCancelPolicyInfoList(CancelPolicyInfoList cancelPolicyInfoList){
-		this.cancelPolicyInfoList = cancelPolicyInfoList;
+	public void setGuaranteeRequired(boolean guaranteeRequired) {
+		this.guaranteeRequired = guaranteeRequired;
 	}
 
-	public CancelPolicyInfoList getCancelPolicyInfoList(){
-		return cancelPolicyInfoList;
+	public com.example.arbaz.expediaexmple.model.CancelPolicyInfoList getCancelPolicyInfoList() {
+		return CancelPolicyInfoList;
 	}
 
-	public void setRateType(String rateType){
-		this.rateType = rateType;
+	public void setCancelPolicyInfoList(com.example.arbaz.expediaexmple.model.CancelPolicyInfoList cancelPolicyInfoList) {
+		CancelPolicyInfoList = cancelPolicyInfoList;
 	}
 
-	public String getRateType(){
+	public String getRateType() {
 		return rateType;
 	}
 
-	public void setTaxRate(double taxRate){
-		this.taxRate = taxRate;
+	public void setRateType(String rateType) {
+		this.rateType = rateType;
 	}
 
-	public double getTaxRate(){
+	public double getTaxRate() {
 		return taxRate;
 	}
 
-	public void setRateChange(String rateChange){
-		this.rateChange = rateChange;
+	public void setTaxRate(double taxRate) {
+		this.taxRate = taxRate;
 	}
 
-	public String getRateChange(){
+	public String getRateChange() {
 		return rateChange;
 	}
 
-	public void setPromo(String promo){
-		this.promo = promo;
+	public void setRateChange(String rateChange) {
+		this.rateChange = rateChange;
 	}
 
-	public String getPromo(){
+	public String getPromo() {
 		return promo;
 	}
 
-	public void setRoomGroup(RoomGroup roomGroup){
-		this.roomGroup = roomGroup;
+	public void setPromo(String promo) {
+		this.promo = promo;
 	}
 
-	public RoomGroup getRoomGroup(){
-		return roomGroup;
+	public com.example.arbaz.expediaexmple.model.RoomGroup getRoomGroup() {
+		return RoomGroup;
 	}
 
-	public void setCancellationPolicy(String cancellationPolicy){
-		this.cancellationPolicy = cancellationPolicy;
+	public void setRoomGroup(com.example.arbaz.expediaexmple.model.RoomGroup roomGroup) {
+		RoomGroup = roomGroup;
 	}
 
-	public String getCancellationPolicy(){
+	public String getCancellationPolicy() {
 		return cancellationPolicy;
+	}
+
+	public void setCancellationPolicy(String cancellationPolicy) {
+		this.cancellationPolicy = cancellationPolicy;
 	}
 }

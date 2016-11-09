@@ -1,22 +1,24 @@
 package com.example.arbaz.expediaexmple.model;
 
-public class Surcharges{
-	private Surcharge surcharge;
-	private String size;
+import java.io.Serializable;
 
-	public void setSurcharge(Surcharge surcharge){
-		this.surcharge = surcharge;
+public class Surcharges implements Serializable{
+	public Surcharge Surcharge;
+	public String size;
+
+	public com.example.arbaz.expediaexmple.model.Surcharge getSurcharge() {
+		return Surcharge;
 	}
 
-	public Surcharge getSurcharge(){
-		return surcharge;
+	public void setSurcharge(com.example.arbaz.expediaexmple.model.Surcharge surcharge) {
+		Surcharge = surcharge;
 	}
 
-	public void setSize(String size){
-		this.size = size;
-	}
-
-	public String getSize(){
+	public String getSize() {
 		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
 	}
 }

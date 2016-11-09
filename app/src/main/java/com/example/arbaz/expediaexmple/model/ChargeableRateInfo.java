@@ -1,94 +1,96 @@
 package com.example.arbaz.expediaexmple.model;
 
-public class ChargeableRateInfo{
-	private NightlyRatesPerRoom nightlyRatesPerRoom;
-	private String maxNightlyRate;
-	private String surchargeTotal;
-	private String commissionableUsdTotal;
-	private Surcharges surcharges;
-	private String nightlyRateTotal;
-	private String total;
-	private String averageBaseRate;
-	private String averageRate;
-	private String currencyCode;
+import java.io.Serializable;
 
-	public void setNightlyRatesPerRoom(NightlyRatesPerRoom nightlyRatesPerRoom){
-		this.nightlyRatesPerRoom = nightlyRatesPerRoom;
-	}
+public class ChargeableRateInfo implements Serializable{
+	public NightlyRatesPerRoom nightlyRatesPerRoom;
+	public String maxNightlyRate;
+	public String surchargeTotal;
+	public String commissionableUsdTotal;
+	public Surcharges Surcharges;
+	public String nightlyRateTotal;
+	public String total;
+	public String averageBaseRate;
+	public String averageRate;
+	public String currencyCode;
 
-	public NightlyRatesPerRoom getNightlyRatesPerRoom(){
+	public NightlyRatesPerRoom getNightlyRatesPerRoom() {
 		return nightlyRatesPerRoom;
 	}
 
-	public void setMaxNightlyRate(String maxNightlyRate){
-		this.maxNightlyRate = maxNightlyRate;
+	public void setNightlyRatesPerRoom(NightlyRatesPerRoom nightlyRatesPerRoom) {
+		this.nightlyRatesPerRoom = nightlyRatesPerRoom;
 	}
 
-	public String getMaxNightlyRate(){
+	public String getMaxNightlyRate() {
 		return maxNightlyRate;
 	}
 
-	public void setSurchargeTotal(String surchargeTotal){
-		this.surchargeTotal = surchargeTotal;
+	public void setMaxNightlyRate(String maxNightlyRate) {
+		this.maxNightlyRate = maxNightlyRate;
 	}
 
-	public String getSurchargeTotal(){
+	public String getSurchargeTotal() {
 		return surchargeTotal;
 	}
 
-	public void setCommissionableUsdTotal(String commissionableUsdTotal){
-		this.commissionableUsdTotal = commissionableUsdTotal;
+	public void setSurchargeTotal(String surchargeTotal) {
+		this.surchargeTotal = surchargeTotal;
 	}
 
-	public String getCommissionableUsdTotal(){
+	public String getCommissionableUsdTotal() {
 		return commissionableUsdTotal;
 	}
 
-	public void setSurcharges(Surcharges surcharges){
-		this.surcharges = surcharges;
+	public void setCommissionableUsdTotal(String commissionableUsdTotal) {
+		this.commissionableUsdTotal = commissionableUsdTotal;
 	}
 
-	public Surcharges getSurcharges(){
-		return surcharges;
+	public com.example.arbaz.expediaexmple.model.Surcharges getSurcharges() {
+		return Surcharges;
 	}
 
-	public void setNightlyRateTotal(String nightlyRateTotal){
-		this.nightlyRateTotal = nightlyRateTotal;
+	public void setSurcharges(com.example.arbaz.expediaexmple.model.Surcharges surcharges) {
+		Surcharges = surcharges;
 	}
 
-	public String getNightlyRateTotal(){
+	public String getNightlyRateTotal() {
 		return nightlyRateTotal;
 	}
 
-	public void setTotal(String total){
-		this.total = total;
+	public void setNightlyRateTotal(String nightlyRateTotal) {
+		this.nightlyRateTotal = nightlyRateTotal;
 	}
 
-	public String getTotal(){
+	public String getTotal() {
 		return total;
 	}
 
-	public void setAverageBaseRate(String averageBaseRate){
-		this.averageBaseRate = averageBaseRate;
+	public void setTotal(String total) {
+		this.total = total;
 	}
 
-	public String getAverageBaseRate(){
+	public String getAverageBaseRate() {
 		return averageBaseRate;
 	}
 
-	public void setAverageRate(String averageRate){
-		this.averageRate = averageRate;
+	public void setAverageBaseRate(String averageBaseRate) {
+		this.averageBaseRate = averageBaseRate;
 	}
 
-	public String getAverageRate(){
+	public String getAverageRate() {
 		return averageRate;
 	}
 
-	public void setCurrencyCode(String currencyCode){
-		this.currencyCode = currencyCode;
+	public void setAverageRate(String averageRate) {
+		this.averageRate = averageRate;
 	}
 
-	public String getCurrencyCode(){
+	public String getCurrencyCode() {
 		return currencyCode;
+	}
+
+	public void setCurrencyCode(String currencyCode) {
+		this.currencyCode = currencyCode;
 	}
 }

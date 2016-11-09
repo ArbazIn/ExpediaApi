@@ -14,13 +14,14 @@ import com.example.arbaz.expediaexmple.R;
 import com.example.arbaz.expediaexmple.model.HotelSummaryItem;
 import com.example.arbaz.expediaexmple.screens.HotelDetailACtivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by arbaz on 7/11/16.
  */
 
-public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.MyViewHolder> {
+public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.MyViewHolder> implements Serializable{
 
     ArrayList<HotelSummaryItem> hotelListArrayList;
     Context context;

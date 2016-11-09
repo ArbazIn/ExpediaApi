@@ -1,8 +1,10 @@
 package com.example.arbaz.expediaexmple.model;
 
-public class Surcharge{
-	private String amount;
-	private String type;
+import java.io.Serializable;
+
+public class Surcharge implements Serializable{
+	public String amount;
+	public String type;
 
 	public void setAmount(String amount){
 		this.amount = amount;

@@ -1,9 +1,11 @@
 package com.example.arbaz.expediaexmple.model;
 
-public class ChargeableNightlyRatesItem{
-	private String promo;
-	private String rate;
-	private String baseRate;
+import java.io.Serializable;
+
+public class ChargeableNightlyRatesItem implements Serializable{
+	public String promo;
+	public String rate;
+	public String baseRate;
 
 	public void setPromo(String promo){
 		this.promo = promo;

@@ -25,12 +25,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, OnApiCallListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, OnApiCallListener,Serializable {
     EditText et_rooms, et_city, et_state, et_country, et_check_in_date, et_check_out_date, et_adults, et_childs;
     Button btn_submit;
     RecyclerView rv_hotelList;

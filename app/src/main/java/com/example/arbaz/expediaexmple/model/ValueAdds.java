@@ -1,24 +1,25 @@
 package com.example.arbaz.expediaexmple.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ValueAdds{
+public class ValueAdds implements Serializable{
 	public String size;
-	public List<ValueAddItem> valueAdd;
+	public List<ValueAddItem> ValueAdd;
 
-	public void setSize(String size){
-		this.size = size;
-	}
-
-	public String getSize(){
+	public String getSize() {
 		return size;
 	}
 
-	public void setValueAdd(List<ValueAddItem> valueAdd){
-		this.valueAdd = valueAdd;
+	public void setSize(String size) {
+		this.size = size;
 	}
 
-	public List<ValueAddItem> getValueAdd(){
-		return valueAdd;
+	public List<ValueAddItem> getValueAdd() {
+		return ValueAdd;
+	}
+
+	public void setValueAdd(List<ValueAddItem> valueAdd) {
+		ValueAdd = valueAdd;
 	}
 }

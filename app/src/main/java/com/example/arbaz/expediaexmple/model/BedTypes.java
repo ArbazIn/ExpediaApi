@@ -3,22 +3,22 @@ package com.example.arbaz.expediaexmple.model;
 import java.io.Serializable;
 
 public class BedTypes implements Serializable{
-	public BedType bedType;
+	public BedType BedType;
 	public String size;
 
-	public void setBedType(BedType bedType){
-		this.bedType = bedType;
+	public com.example.arbaz.expediaexmple.model.BedType getBedType() {
+		return BedType;
 	}
 
-	public BedType getBedType(){
-		return bedType;
+	public void setBedType(com.example.arbaz.expediaexmple.model.BedType bedType) {
+		BedType = bedType;
 	}
 
-	public void setSize(String size){
-		this.size = size;
-	}
-
-	public String getSize(){
+	public String getSize() {
 		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
 	}
 }

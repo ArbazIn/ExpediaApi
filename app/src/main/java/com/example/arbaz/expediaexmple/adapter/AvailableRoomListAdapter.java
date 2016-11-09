@@ -17,20 +17,21 @@ import com.example.arbaz.expediaexmple.api.ApiFunctions;
 import com.example.arbaz.expediaexmple.global.Constants;
 import com.example.arbaz.expediaexmple.model.HotelRoomResponse;
 import com.example.arbaz.expediaexmple.model.PaymentTypeItem;
-import com.example.arbaz.expediaexmple.screens.HotelBookActivity;
+import com.example.arbaz.expediaexmple.screens.RoomlBookActivity;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by arbaz on 7/11/16.
  */
 
-public class AvailableRoomListAdapter extends RecyclerView.Adapter<AvailableRoomListAdapter.MyViewHolder> implements OnApiCallListener {
+public class AvailableRoomListAdapter extends RecyclerView.Adapter<AvailableRoomListAdapter.MyViewHolder> implements OnApiCallListener,Serializable {
 
     ArrayList<HotelRoomResponse> hotelRoomResponseArrayList;
     ArrayList<PaymentTypeItem> paymentTypeItemArrayList = new ArrayList<>();
@@ -86,13 +87,13 @@ public class AvailableRoomListAdapter extends RecyclerView.Adapter<AvailableRoom
                 public void onClick(View v) {
                     HotelRoomResponse hotelRoomResponse_data;
                     hotelRoomResponse_data= (HotelRoomResponse) v.getTag();
-                    Intent iRoomDetails = new Intent(context, HotelBookActivity.class);
+                    Intent iRoomDetails = new Intent(context, RoomlBookActivity.class);
                     iRoomDetails.putExtra("HotelRoomDetails", hotelRoomResponse_data);
                     iRoomDetails.putExtra("HotelId", hotelId);
                     iRoomDetails.putExtra("HotelRoomCheckInData", checkInDate);
                     iRoomDetails.putExtra("HotelRoomCheckOutData", checkOutDate);
-                    iRoomDetails.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(iRoomDetails);
+                   iRoomDetails.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    v.getContext().startActivity(iRoomDetails);
 
                 }
             });

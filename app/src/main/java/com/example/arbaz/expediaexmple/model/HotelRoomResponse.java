@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class HotelRoomResponse implements Serializable {
 	public int roomTypeCode;
-	public ValueAdds valueAdds;
+	public ValueAdds ValueAdds;
 	public BedTypes BedTypes;
 	public RateInfos RateInfos;
 	public int rateCode;
@@ -26,12 +26,12 @@ public class HotelRoomResponse implements Serializable {
 		this.roomTypeCode = roomTypeCode;
 	}
 
-	public ValueAdds getValueAdds() {
-		return valueAdds;
+	public com.example.arbaz.expediaexmple.model.ValueAdds getValueAdds() {
+		return ValueAdds;
 	}
 
-	public void setValueAdds(ValueAdds valueAdds) {
-		this.valueAdds = valueAdds;
+	public void setValueAdds(com.example.arbaz.expediaexmple.model.ValueAdds valueAdds) {
+		ValueAdds = valueAdds;
 	}
 
 	public com.example.arbaz.expediaexmple.model.BedTypes getBedTypes() {
