@@ -28,10 +28,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     //for HTTP ok
-     compile 'com.squareup.okhttp:okhttp:2.5.0'
+    // compile 'com.squareup.okhttp:okhttp:2.5.0'
+
     //latest for form builder
-   // compile'com.squareup.okhttp3:okhttp-urlconnection:3.0.0'
-    //compile 'com.squareup.okhttp3:okhttp:3.0.0-RC1'
+    compile 'com.squareup.okhttp3:okhttp:3.3.0'
 
     //Gson
     compile 'com.google.code.gson:gson:2.2.+'

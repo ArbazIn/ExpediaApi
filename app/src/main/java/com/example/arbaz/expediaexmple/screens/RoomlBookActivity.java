@@ -72,7 +72,7 @@ public class RoomlBookActivity extends AppCompatActivity implements Serializable
             rateKey = hotelRoomResponse.getRateInfos().getRateInfo().getRoomGroup().getRoom().getRateKey();
             roomTypeCode = hotelRoomResponse.getRoomTypeCode();
             rateCode = hotelRoomResponse.getRateCode();
-            chargeableRate = "250.00";
+            chargeableRate = "7241.43";
 
             bedType = "14";
             smokingPreference = hotelRoomResponse.getSmokingPreferences();
@@ -81,10 +81,10 @@ public class RoomlBookActivity extends AppCompatActivity implements Serializable
             roomArrayList.add(room);
             finalRoomGroup = new FinalRoomGroup(roomArrayList);
 
-            finalReservationInfo = new FinalReservationInfo("mas@gmail.com", "Arbaz", "Shaikh", "1122334455", "CA", "123456789", "123", "11", "2016");
+        //    finalReservationInfo = new FinalReservationInfo("mas@gmail.com", "Mas", "Andy", "1122334455", "CA", "123456789", "123", "11", "2016");
 
             //FinalAddressInfo(String address1, String city, String stateProvinceCode, String countryCode, String postalCode)
-            finalAddressInfo = new FinalAddressInfo("TCC", "Seattle", "WA", "US", "98004");
+        ///    finalAddressInfo = new FinalAddressInfo("TCC", "Seattle", "WA", "US", "98004");
 
 
             btn_reservation.setOnClickListener(new View.OnClickListener() {
@@ -92,14 +92,22 @@ public class RoomlBookActivity extends AppCompatActivity implements Serializable
                 public void onClick(View v) {
                     /*
                     (String url, String cid, String minorRev, String apiKey, String locale,
-                                     String currencyCode, String sig, long hotelId, String arrivalDate, String departureDate,
-                                     String supplierType, String rateKey, String roomTypeCode, String rateCode, String chargeableRate,
-                                     FinalRoomGroup finalRoomGroup, FinalReservationInfo finalReservationInfo, FinalAddressInfo finalAddressInfo)
+                    String currencyCode, String sig, long hotelId, String arrivalDate, String departureDate,
+                    String supplierType, String rateKey, int roomTypeCode, int rateCode, String chargeableRate,
+                    String room1, String room1FirstName, String room1LastName, String room1BedTypeId,
+                     String room1SmokingPreference,
+                    String email, String firstName, String lastName, String homePhone, String workPhone,
+                     String creditCardType, String creditCardNumbe,
+                    String creditCardIdentifier, String creditCardExpirationMonth, String
+                    creditCardExpirationYear, String address1,
+                    String city, String stateProvinceCode, String countryCode, String postalCode) {
+
                     * */
                     apiFunctions.hotelRoomReservation(Api.HotelReservation, Constants.cid, Constants.minorRev,
                             Constants.apiKey, Constants.locale, Constants.currencyCode,
                             Constants.sig, hotelId, checkInDate, checkOutDate, Constants.supplierType, rateKey,roomTypeCode,
-                            rateCode, chargeableRate,finalRoomGroup,finalReservationInfo,finalAddressInfo);
+                            rateCode, chargeableRate,"1,2","Mas Tester","Andy Tester","14","NS","mas@gmail.com","Mas Card  Tester","Andy Card Tester","99887455","98989898",
+                            "CA","5105105105105100","555","11","2018","AddressTester 123654","CityTester","WA","US","98004");
 
                 }
             });
@@ -117,6 +125,13 @@ public class RoomlBookActivity extends AppCompatActivity implements Serializable
 
     @Override
     public void onSuccess(int responseCode, String responseString, String url) {
-        Log.e("Reservation Success", responseString);
+       try {
+
+           Log.e("Reservation Success", responseString);
+       }
+       catch (Exception e)
+       {
+           e.printStackTrace();
+       }
     }
 }

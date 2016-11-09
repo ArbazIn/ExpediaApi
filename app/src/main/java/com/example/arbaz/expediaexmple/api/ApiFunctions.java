@@ -7,16 +7,23 @@ import com.example.arbaz.expediaexmple.model.FinalAddressInfo;
 import com.example.arbaz.expediaexmple.model.FinalReservationInfo;
 import com.example.arbaz.expediaexmple.model.FinalRoomGroup;
 import com.google.gson.Gson;
-import com.squareup.okhttp.Cache;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+
+
+import okhttp3.Cache;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.OkHttpClient.Builder;
+
 
 /**
  * Created by arbaz on 7/11/16.
@@ -28,6 +35,7 @@ public class ApiFunctions {
     public OnApiCallListener acListener;
     public Gson gson;
     public final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    public Builder b = new Builder();
 
     public ApiFunctions(Context context, OnApiCallListener acListener) {
         this.client = new OkHttpClient();
@@ -36,9 +44,12 @@ public class ApiFunctions {
         this.gson = new Gson();
 
         try {
-            client.setConnectTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);
+            /*client.setConnectTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);
             client.setWriteTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);
-            client.setReadTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);
+            client.setReadTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);*/
+            b.connectTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);
+            b.writeTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);
+            b.readTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);
         } catch (Exception e) {
         }
 
@@ -46,7 +57,7 @@ public class ApiFunctions {
         int cacheSize = 10 * 1024 * 1024;
         try {
             Cache cache = new Cache(cacheDirectory, cacheSize);
-            client.setCache(cache);
+            b.cache(cache);
         } catch (Exception e) {
             //Log.v("Exception" + e.getMessage());
         }
@@ -57,17 +68,18 @@ public class ApiFunctions {
         client.newCall(request).enqueue(new Callback() {
 
             @Override
-            public void onFailure(Request request, IOException e) {
+            public void onFailure(Call call, IOException e) {
                 acListener.onFailure(e.getMessage());
             }
 
             @Override
-            public void onResponse(Response response) throws IOException {
+            public void onResponse(Call call, Response response) throws IOException {
                 int responseCode = response.code();
                 String responseString = response.body().string();
                 acListener.onSuccess(responseCode, responseString, url);
-
             }
+
+
         });
     }
 
@@ -115,17 +127,63 @@ public class ApiFunctions {
     public void hotelRoomReservation(String url, String cid, String minorRev, String apiKey, String locale,
                                      String currencyCode, String sig, long hotelId, String arrivalDate, String departureDate,
                                      String supplierType, String rateKey, int roomTypeCode, int rateCode, String chargeableRate,
-                                     FinalRoomGroup finalRoomGroup, FinalReservationInfo finalReservationInfo, FinalAddressInfo finalAddressInfo) {
+                                     String room1, String room1FirstName, String room1LastName, String room1BedTypeId, String room1SmokingPreference,
+                                     String email, String firstName, String lastName, String homePhone, String workPhone, String creditCardType, String creditCardNumber,
+                                     String creditCardIdentifier, String creditCardExpirationMonth, String creditCardExpirationYear, String address1,
+                                     String city, String stateProvinceCode, String countryCode, String postalCode) {
 
 
         try {
-            String getUrl = url + "&cid=" + cid + "&minorRev=" + minorRev + "&apikey=" + apiKey + "&locale=" + locale
-                    + "&currencyCode=" + currencyCode + "&sig=" + sig + "" +
-                    "&hotelId=" + hotelId + "&arrivalDate=" + arrivalDate + "&departureDate=" + departureDate + "&supplierType=" + supplierType +"&rateKey="+rateKey+"&roomTypeCode="+roomTypeCode+
-                    "&rateCode="+rateCode+"&chargeableRate="+chargeableRate+"&RoomGroup="+finalRoomGroup+"&ReservationInfo="+finalReservationInfo+
-                    "&AddressInfo="+finalAddressInfo;
-                    ;
-            Request request = new Request.Builder().url(getUrl).get().build();
+           /* String getUrl =
+                    url + "&cid=" + cid + "&minorRev=" + minorRev + "&apikey=" + apiKey + "&locale=" + locale +
+                    "&currencyCode=" + currencyCode + "&sig=" + sig + "" +
+                    "&hotelId=" + hotelId + "&arrivalDate=" + arrivalDate + "&departureDate=" + departureDate +
+                    "&supplierType=" + supplierType + "&rateKey=" + rateKey + "&roomTypeCode=" + roomTypeCode +
+                    "&rateCode=" + rateCode + "&chargeableRate=" + chargeableRate + "&RoomGroup=" + finalRoomGroup +
+                    "&ReservationInfo=" + finalReservationInfo +
+                    "&AddressInfo=" + finalAddressInfo;*/
+
+
+            RequestBody reservationData = new FormBody.Builder()
+                    .add("cid", cid)
+                    .add("minorRev", minorRev)
+                    .add("apikey", apiKey)
+                    .add("locale", locale)
+                    .add("currencyCode", currencyCode)
+                    .add("sig", sig)
+                    .add("hotelId", String.valueOf(hotelId))
+                    .add("arrivalDate", arrivalDate)
+                    .add("departureDate", departureDate)
+                    .add("supplierType", supplierType)
+                    .add("rateKey", rateKey)
+                    .add("roomTypeCode", String.valueOf(roomTypeCode))
+                    .add("rateCode", String.valueOf(rateCode))
+                    .add("chargeableRate", chargeableRate)
+                    .add("room1", room1)
+                    .add("room1FirstName", room1FirstName)
+                    .add("room1LastName", room1LastName)
+                    .add("room1BedTypeId", room1BedTypeId)
+                    .add("room1SmokingPreference", room1SmokingPreference)
+                    .add("email", email)
+                    .add("firstName", firstName)
+                    .add("lastName", lastName)
+                    .add("homePhone", homePhone)
+                    .add("workPhone", workPhone)
+                    .add("creditCardType", creditCardType)
+                    .add("creditCardNumber", creditCardNumber)
+                    .add("creditCardIdentifier", creditCardIdentifier)
+                    .add("creditCardExpirationMonth", creditCardExpirationMonth)
+                    .add("creditCardExpirationYear", creditCardExpirationYear)
+                    .add("address1", address1)
+                    .add("city", city)
+                    .add("stateProvinceCode", stateProvinceCode)
+                    .add("countryCode", countryCode)
+                    .add("postalCode", postalCode)
+                    .build();
+                    /*.add("RoomGroup","finalRoomGroup")
+                    .add("ReservationInfo","finalReservationInfo")
+                    .add("AddressInfo","finalAddressInfo")*/
+            Request request = new Request.Builder().url(url).post(reservationData).build();
             executeRequest(url, request);
         } catch (Exception e) {
             e.printStackTrace();
