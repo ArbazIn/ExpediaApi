@@ -97,7 +97,7 @@ public class HotelDetailACtivity extends AppCompatActivity implements OnApiCallL
                 boolean isHotelDetails = true;
 
 
-                apiFunctions.hotelAvailable(Api.HotelAvaiUrl, Constants.cid, Constants.minorRev,
+                apiFunctions.hotelAvailable(Api.HotelMainUrl+Api.ActionHotelAvaiUrl, Constants.cid, Constants.minorRev,
                         Constants.apiKey, Constants.locale, Constants.currencyCode,
                         Constants.sig, hotelSummaryItem.getHotelId(), checkInDate, checkOutDate, isHotelDetails, Constants.numberOfAdult);
 

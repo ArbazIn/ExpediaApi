@@ -77,7 +77,7 @@ public class AvailableRoomListAdapter extends RecyclerView.Adapter<AvailableRoom
                 public void onClick(View v) {
 
 
-                    apiFunctions.hotelPayment(Api.HotelPaymentUrl, Constants.cid, Constants.minorRev,
+                    apiFunctions.hotelPayment(Api.HotelMainUrl+Api.ActionHotelPaymentUrl, Constants.cid, Constants.minorRev,
                             Constants.apiKey, Constants.locale, Constants.currencyCode,
                             Constants.sig, hotelId, Constants.supplierType, Constants.rateType);
                 }

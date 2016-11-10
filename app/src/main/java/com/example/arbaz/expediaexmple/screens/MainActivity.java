@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String childs = et_childs.getText().toString();
 
 
-                apiFunctions.hotelList(Api.HotelListUrl, Constants.cid, Constants.minorRev,
+                apiFunctions.hotelList(Api.HotelMainUrl+Api.ActionHotelListUrl, Constants.cid, Constants.minorRev,
                         Constants.apiKey, Constants.locale, Constants.currencyCode,
                         Constants.sig, checkInDate, checkOutDate, room, city, state, country);
                 break;

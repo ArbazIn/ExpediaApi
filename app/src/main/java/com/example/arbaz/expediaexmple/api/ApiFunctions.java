@@ -190,4 +190,40 @@ public class ApiFunctions {
         }
     }
 
+
+    /*Api Function For  Hotel BookRoom Itinerary  */
+    public void hotelRoomItineary(String url, String cid, String minorRev, String apiKey, String locale, String currencyCode, String sig, int itineraryId, String email) {
+
+        try {
+            String getUrl = url + "&cid=" + cid + "&minorRev=" + minorRev + "&apikey=" + apiKey + "&locale=" + locale + "&currencyCode=" + currencyCode + "&sig=" + sig + "&itineraryId=" + itineraryId + "&email=" + email;
+            Request request = new Request.Builder().url(getUrl).get().build();
+            executeRequest(url, request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*Api Function For  Hotel Cancel BookRoom Itinerary  */
+    public void hotelCancelRoomItineary(String url, String cid, String minorRev, String apiKey, String locale, String currencyCode, String sig, int itineraryId, String email, String reason, int confirmationNumber) {
+
+        try {
+            String getUrl = url + "&cid=" + cid + "&minorRev=" + minorRev + "&apikey=" + apiKey + "&locale=" + locale + "&currencyCode=" + currencyCode + "&sig=" + sig + "&itineraryId=" + itineraryId + "&email=" + email + "&reason=" + reason + "&confirmationNumber=" + confirmationNumber;
+            Request request = new Request.Builder().url(getUrl).get().build();
+            executeRequest(url, request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*Api Function For  Hotel Images*/
+    public void hotelRoomImages(String url, String cid, String minorRev, String apiKey, String locale, String currencyCode, String sig, long hotelId) {
+
+        try {
+            String getUrl = url + "&cid=" + cid + "&minorRev=" + minorRev + "&apikey=" + apiKey + "&locale=" + locale + "&currencyCode=" + currencyCode + "&sig=" + sig + "&hotelId=" + hotelId;
+            Request request = new Request.Builder().url(getUrl).get().build();
+            executeRequest(url, request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

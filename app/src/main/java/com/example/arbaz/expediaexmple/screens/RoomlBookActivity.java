@@ -17,14 +17,19 @@ import com.example.arbaz.expediaexmple.global.Constants;
 import com.example.arbaz.expediaexmple.model.FinalAddressInfo;
 import com.example.arbaz.expediaexmple.model.FinalReservationInfo;
 import com.example.arbaz.expediaexmple.model.FinalRoomGroup;
+import com.example.arbaz.expediaexmple.model.HotelItineraryResponse;
+import com.example.arbaz.expediaexmple.model.HotelRoomReservationResponse;
 import com.example.arbaz.expediaexmple.model.HotelRoomResponse;
+import com.example.arbaz.expediaexmple.model.Itinerary;
 import com.example.arbaz.expediaexmple.model.PaymentTypeItem;
 import com.example.arbaz.expediaexmple.model.Room;
+import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class RoomlBookActivity extends AppCompatActivity implements Serializable, OnApiCallListener {
     RecyclerView rv_payment_type;
@@ -36,7 +41,7 @@ public class RoomlBookActivity extends AppCompatActivity implements Serializable
     FinalRoomGroup finalRoomGroup;
     FinalReservationInfo finalReservationInfo;
     FinalAddressInfo finalAddressInfo;
-    Button btn_reservation;
+    Button btn_reservation, btn_itinerary, btn_cancel_itinerary, btn_roomimages;
     ApiFunctions apiFunctions;
     long hotelId;
     String checkInDate;
@@ -48,8 +53,12 @@ public class RoomlBookActivity extends AppCompatActivity implements Serializable
     String chargeableRate;
     String bedType;
     String smokingPreference;
-    ArrayList<Room> roomArrayList=new ArrayList<>();
+    ArrayList<Room> roomArrayList = new ArrayList<>();
     Room room;
+    Gson gson = new Gson();
+    String email = "mas@gmail.com";
+    String room1BedTypeId = "14";
+    HotelRoomReservationResponse hotelRoomReservationResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +66,10 @@ public class RoomlBookActivity extends AppCompatActivity implements Serializable
         setContentView(R.layout.activity_hotel_book);
 
         btn_reservation = (Button) findViewById(R.id.btn_reservation);
+        btn_itinerary = (Button) findViewById(R.id.btn_itinerary);
+        btn_cancel_itinerary = (Button) findViewById(R.id.btn_cancel_itinerary);
+        btn_roomimages = (Button) findViewById(R.id.btn_roomimages);
+
 
         apiFunctions = new ApiFunctions(this, this);
         try {
@@ -76,39 +89,30 @@ public class RoomlBookActivity extends AppCompatActivity implements Serializable
 
             bedType = "14";
             smokingPreference = hotelRoomResponse.getSmokingPreferences();
-            //Constants.numberOfAdult, "Arbaz", "Shaikh", bedType, smokingPreference
-            room=new Room(Constants.numberOfAdult,"Mas","Andy","14","NS");
+            room = new Room(Constants.numberOfAdult, "Mas", "Andy", "14", "NS");
             roomArrayList.add(room);
             finalRoomGroup = new FinalRoomGroup(roomArrayList);
-
-        //    finalReservationInfo = new FinalReservationInfo("mas@gmail.com", "Mas", "Andy", "1122334455", "CA", "123456789", "123", "11", "2016");
-
-            //FinalAddressInfo(String address1, String city, String stateProvinceCode, String countryCode, String postalCode)
-        ///    finalAddressInfo = new FinalAddressInfo("TCC", "Seattle", "WA", "US", "98004");
 
 
             btn_reservation.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*
-                    (String url, String cid, String minorRev, String apiKey, String locale,
-                    String currencyCode, String sig, long hotelId, String arrivalDate, String departureDate,
-                    String supplierType, String rateKey, int roomTypeCode, int rateCode, String chargeableRate,
-                    String room1, String room1FirstName, String room1LastName, String room1BedTypeId,
-                     String room1SmokingPreference,
-                    String email, String firstName, String lastName, String homePhone, String workPhone,
-                     String creditCardType, String creditCardNumbe,
-                    String creditCardIdentifier, String creditCardExpirationMonth, String
-                    creditCardExpirationYear, String address1,
-                    String city, String stateProvinceCode, String countryCode, String postalCode) {
 
-                    * */
-                    apiFunctions.hotelRoomReservation(Api.HotelReservation, Constants.cid, Constants.minorRev,
+                    apiFunctions.hotelRoomReservation(Api.HotelMainUrl + Api.ActionHotelReservation, Constants.cid, Constants.minorRev,
                             Constants.apiKey, Constants.locale, Constants.currencyCode,
-                            Constants.sig, hotelId, checkInDate, checkOutDate, Constants.supplierType, rateKey,roomTypeCode,
-                            rateCode, chargeableRate,"1,2","Mas Tester","Andy Tester","14","NS","mas@gmail.com","Mas Card  Tester","Andy Card Tester","99887455","98989898",
-                            "CA","5105105105105100","555","11","2018","AddressTester 123654","CityTester","WA","US","98004");
+                            Constants.sig, hotelId, checkInDate, checkOutDate, Constants.supplierType, rateKey, roomTypeCode,
+                            rateCode, chargeableRate, "1,2", "Mas Tester", "Andy Tester", room1BedTypeId, "NS", email, "Mas Card  Tester", "Andy Card Tester", "99887455", "98989898",
+                            "CA", "5105105105105100", "555", "11", "2018", "AddressTester 123654", "CityTester", "WA", "US", "98004");
 
+                }
+
+            });
+            btn_roomimages.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    apiFunctions.hotelRoomImages(Api.HotelMainUrl + Api.ActionHotelImages, Constants.cid, Constants.minorRev,
+                            Constants.apiKey, Constants.locale, Constants.currencyCode,
+                            Constants.sig, hotelId);
                 }
             });
         } catch (Exception e) {
@@ -119,19 +123,92 @@ public class RoomlBookActivity extends AppCompatActivity implements Serializable
 
     @Override
     public void onFailure(String message) {
-        Log.e("Reservation Failure", message);
+
+        Log.e("Reservation  Failure", message);
 
     }
 
     @Override
-    public void onSuccess(int responseCode, String responseString, String url) {
-       try {
+    public void onSuccess(final int responseCode, String responseString, String url) {
+        try {
+            final String roomEmail = email;
+            final int roomitineraryId;
+            final int confirmationNumbers;
+            String roomBedTypeId = room1BedTypeId;
+            if (responseCode == Api.ResponseOk) {
+                if (url.equals(Api.HotelMainUrl + Api.ActionHotelReservation)) {
+                    Log.e("Reservation Success", responseString);
 
-           Log.e("Reservation Success", responseString);
-       }
-       catch (Exception e)
-       {
-           e.printStackTrace();
-       }
+                    try {
+                        // btn_itinerary.setVisibility(View.VISIBLE);
+                        JSONObject jsonObject = new JSONObject(responseString);
+                        JSONObject getFirstObj = jsonObject.getJSONObject("HotelRoomReservationResponse");
+                        hotelRoomReservationResponse = gson.fromJson(getFirstObj.toString(), HotelRoomReservationResponse.class);
+                        roomitineraryId = hotelRoomReservationResponse.getItineraryId();
+                        confirmationNumbers = hotelRoomReservationResponse.getConfirmationNumbers();
+                        btn_itinerary.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                apiFunctions.hotelRoomItineary(Api.HotelMainUrl + Api.ActionHotelRoomItinerary, Constants.cid, Constants.minorRev, Constants.apiKey, Constants.locale, Constants.currencyCode, Constants.sig, roomitineraryId, roomEmail);
+                            }
+                        });
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (url.equals(Api.HotelMainUrl + Api.ActionHotelRoomItinerary)) {
+                    final int ItineraryId;
+                    final int ConformationNo;
+                    final String reason;
+                    HotelItineraryResponse hotelItineraryResponse;
+                    try {
+                        Log.e("RoomItineary Success", responseString);
+                        JSONObject jsonObject = new JSONObject(responseString);
+                        JSONObject getHotelItineraryResponse = jsonObject.getJSONObject("HotelItineraryResponse");
+                        hotelItineraryResponse = gson.fromJson(getHotelItineraryResponse.toString(), HotelItineraryResponse.class);
+
+                        ItineraryId = hotelItineraryResponse.getItinerary().getItineraryId();
+                        ConformationNo = hotelItineraryResponse.getItinerary().getHotelConfirmation().getConfirmationNumber();
+                        reason = "Testing Reason";
+                        //String getUrl = url + "&cid=" + cid + "&minorRev=" + minorRev + "&apikey=" + apiKey + "&locale=" + locale + "
+                        // &currencyCode=" + currencyCode + "&sig=" + sig + "&itineraryId=" + itineraryId + "&email=" +
+                        // email+"&confirmationNumber="+confirmationNumber;
+                        btn_cancel_itinerary.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                apiFunctions.hotelCancelRoomItineary(Api.HotelMainUrl + Api.ActionHotelRoomCancelItinerary, Constants.cid, Constants.minorRev, Constants.apiKey, Constants.locale, Constants.currencyCode, Constants.sig, ItineraryId, roomEmail, reason, ConformationNo);
+                            }
+                        });
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                if (url.equals(Api.HotelMainUrl + Api.ActionHotelRoomCancelItinerary)) {
+                    try {
+                        Log.e("CancelItineary Success", responseString);
+                        //  String getUrl = url + "&cid=" + cid + "&minorRev=" + minorRev + "&apikey="
+                        // + apiKey + "&locale=" + locale + "&currencyCode=" + currencyCode + "&sig=" + sig +
+                        // "&itineraryId=" + itineraryId + "&email=" + email+"&confirmationNumber="+confirmationNumber;
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                if (url.equals(Api.HotelMainUrl + Api.ActionHotelImages)) {
+                    Log.e("Images ListSuccess",responseString);
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

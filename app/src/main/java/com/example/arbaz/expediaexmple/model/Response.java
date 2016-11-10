@@ -1,13 +1,13 @@
 package com.example.arbaz.expediaexmple.model;
 
 public class Response{
-	private HotelPaymentResponse hotelPaymentResponse;
+	private HotelItineraryResponse hotelItineraryResponse;
 
-	public void setHotelPaymentResponse(HotelPaymentResponse hotelPaymentResponse){
-		this.hotelPaymentResponse = hotelPaymentResponse;
+	public void setHotelItineraryResponse(HotelItineraryResponse hotelItineraryResponse){
+		this.hotelItineraryResponse = hotelItineraryResponse;
 	}
 
-	public HotelPaymentResponse getHotelPaymentResponse(){
-		return hotelPaymentResponse;
+	public HotelItineraryResponse getHotelItineraryResponse(){
+		return hotelItineraryResponse;
 	}
 }

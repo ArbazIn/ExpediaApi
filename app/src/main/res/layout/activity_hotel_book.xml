@@ -8,12 +8,11 @@
     tools:context="com.example.arbaz.expediaexmple.screens.RoomlBookActivity">
 
     <LinearLayout
-        android:padding="10dp"
         android:id="@+id/book_reservation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <Button
             android:id="@+id/btn_reservation"
@@ -23,6 +22,39 @@
             android:text="Reservation"
             android:textAllCaps="false"
             android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_itinerary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimary"
+            android:text="View Itinerary"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn_cancel_itinerary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimary"
+            android:text="Cancel Itinerary"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn_roomimages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimary"
+            android:text="room Images"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:visibility="visible" />
 
     </LinearLayout>
 
