@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".screens.MainActivity"
-            android:label="Search Hotel"
+            android:label="Expedia Example"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,9 +22,11 @@
         </activity>
         <activity
             android:name=".screens.HotelDetailACtivity"
-            android:label="Book Hotel"
+            android:label="Hotel Details"
             android:screenOrientation="portrait" />
-        <activity android:name=".screens.RoomlBookActivity"></activity>
+        <activity android:name=".screens.RoomlBookActivity"
+            android:label="Room Reservation"
+            ></activity>
     </application>
 
 </manifest>

@@ -35,7 +35,7 @@ public class ApiFunctions {
     public OnApiCallListener acListener;
     public Gson gson;
     public final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    public Builder b = new Builder();
+    public Builder builder = new Builder();
 
     public ApiFunctions(Context context, OnApiCallListener acListener) {
         this.client = new OkHttpClient();
@@ -47,9 +47,9 @@ public class ApiFunctions {
             /*client.setConnectTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);
             client.setWriteTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);
             client.setReadTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);*/
-            b.connectTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);
-            b.writeTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);
-            b.readTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);
+            builder.connectTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);
+            builder.writeTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);
+            builder.readTimeout(Api.ConnectionTimeout, TimeUnit.SECONDS);
         } catch (Exception e) {
         }
 
@@ -57,7 +57,8 @@ public class ApiFunctions {
         int cacheSize = 10 * 1024 * 1024;
         try {
             Cache cache = new Cache(cacheDirectory, cacheSize);
-            b.cache(cache);
+            builder.cache(cache);
+            client=builder.build();
         } catch (Exception e) {
             //Log.v("Exception" + e.getMessage());
         }
